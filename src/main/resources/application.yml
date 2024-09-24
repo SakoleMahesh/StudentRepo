@@ -1,0 +1,20 @@
+server:
+  port: 8082  # The port on which this service will run
+
+spring:
+  application:
+    name: Student  # The name of your service, this will be used by Eureka
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/  # URL of the Eureka server
+    register-with-eureka: true  # This service should register with Eureka
+    fetch-registry: true  # This service should fetch the registry information from Eureka
+    renewal-interval-in-seconds: 30  # Frequency of sending heartbeat requests
+    eviction-interval-in-seconds: 30  # Time before instance is considered expired
+    instance-info-replication-interval-seconds: 30  # Time before instance info is replicated
+
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
